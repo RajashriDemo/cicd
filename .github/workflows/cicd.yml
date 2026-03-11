@@ -23,11 +23,17 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    #- name: Install SonarCloud Scanner
+    #  uses: sonarsource/sonarcloud-github-action@v2
+    #  with:
+    #      organization: your-sonarcloud-org  # your org in SonarCloud
+    #      token: ${{ secrets.SONAR_TOKEN }}
+
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore BasicWebApp/BasicWebApp.sln
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build BasicWebApp/BasicWebApp.sln --configuration Release --no-restore
 
-    #- name: Run tests
-    #  run: dotnet test --no-build --verbosity normal
+    - name: Run tests
+      run: dotnet test BasicWebApp/BasicWebApp.Test/BasicWebApp.Test.csproj --no-build
