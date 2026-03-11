@@ -10,6 +10,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: BasicWebApp/BasicWebApp   # folder with .sln
 
     steps:
     - name: Checkout code
@@ -20,11 +23,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore dependencies BasicWebApp/BasicWebApp/BasicWebApp.sln
+    - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
-      run: dotnet build BasicWebApp/BasicWebApp/BasicWebApp.sln --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     #- name: Run tests
     #  run: dotnet test --no-build --verbosity normal
