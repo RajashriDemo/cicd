@@ -30,10 +30,10 @@ jobs:
     #      token: ${{ secrets.SONAR_TOKEN }}
 
     - name: Restore dependencies
-      run: dotnet restore BasicWebApp/BasicWebApp.sln
+      run: dotnet restore BasicWebApp.sln
 
     - name: Build
-      run: dotnet build BasicWebApp/BasicWebApp.sln --configuration Release --no-restore
+      run: dotnet build BasicWebApp.sln --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test BasicWebApp/BasicWebApp.Test/BasicWebApp.Test.csproj --no-build
+      run: dotnet test ../../BasicWebApp.Test/BasicWebApp.Test.csproj --no-build
