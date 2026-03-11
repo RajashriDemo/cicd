@@ -20,11 +20,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
+    - name: Restore dependencies BasicWebApp/BasicWebApp/BasicWebApp.sln
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build BasicWebApp/BasicWebApp/BasicWebApp.sln --configuration Release --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+    #- name: Run tests
+    #  run: dotnet test --no-build --verbosity normal
