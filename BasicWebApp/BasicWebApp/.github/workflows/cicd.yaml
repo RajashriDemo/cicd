@@ -2,7 +2,7 @@ name: ASP.NET 8 CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "main" ]
 
@@ -28,4 +28,3 @@ jobs:
 
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
-      
