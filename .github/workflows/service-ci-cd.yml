@@ -1,0 +1,69 @@
+name: BasicConsoleApp CI/CD
+
+on:
+  push:
+    branches: [dev, qa, main]
+    paths:
+      - 'BasicConsoleApp/**'
+
+permissions:
+  contents: write
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: BasicConsoleApp
+
+    steps:
+
+    - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Generate Version
+      id: version
+      run: |
+        VERSION=1.0.${{ github.run_number }}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Restore
+      run: dotnet restore BasicConsoleApp.sln
+
+    - name: Build
+      run: dotnet build BasicConsoleApp.sln --configuration Release --no-restore
+
+    - name: Publish WorkerService
+      run: dotnet publish WorkerService/WorkerService.csproj -c Release -o publish-worker
+
+    - name: Publish EmailService
+      run: dotnet publish EmailService/EmailService.csproj -c Release -o publish-email
+
+    - name: Upload Worker Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: workerservice-${{ steps.version.outputs.version }}
+        path: BasicConsoleApp/publish-worker
+
+    - name: Upload Email Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: emailservice-${{ steps.version.outputs.version }}
+        path: BasicConsoleApp/publish-email
+
+    - name: Create Git Tag
+      if: github.ref == 'refs/heads/main'
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        TAG=v${{ steps.version.outputs.version }}
+        git tag $TAG
+        git push origin $TAG

@@ -1,0 +1,63 @@
+name: BasicWebApp CI/CD
+
+on:
+  push:
+    branches: [dev, qa, main]
+    paths:
+      - 'BasicWebApp/**'
+
+permissions:
+  contents: write
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: BasicWebApp
+
+    steps:
+
+    - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Generate Version
+      id: version
+      run: |
+        VERSION=1.0.${{ github.run_number }}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Restore
+      run: dotnet restore BasicWebApp.sln
+
+    - name: Build
+      run: dotnet build BasicWebApp.sln --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test BasicWebApp.Tests/BasicWebApp.Tests.csproj --no-build
+
+    - name: Publish
+      run: dotnet publish BasicWebApp/BasicWebApp.csproj -c Release -o publish
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: basicwebapp-${{ steps.version.outputs.version }}
+        path: BasicWebApp/publish
+
+    - name: Create Git Tag
+      if: github.ref == 'refs/heads/main'
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        TAG=v${{ steps.version.outputs.version }}
+        git tag $TAG
+        git push origin $TAG
