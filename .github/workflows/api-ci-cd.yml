@@ -17,7 +17,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: BasicWebAPI
+        working-directory: BasicWebAPI/BasicWebAPI
 
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -47,7 +47,7 @@ jobs:
       run: dotnet build BasicWebAPI.sln --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test BasicWebAPI.Tests/BasicWebAPI.Tests.csproj --no-build
+      run: dotnet test BasicWebAPI.Test/BasicWebAPI.Test.csproj --no-build
 
     - name: Publish
       run: dotnet publish BasicWebAPI/BasicWebAPI.csproj -c Release -o publish
