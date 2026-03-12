@@ -1,0 +1,25 @@
+name: WebApp Pipeline
+
+on:
+  push:
+    branches: [dev, qa, main]
+    paths:
+      - 'BasicWebApp/**'
+
+jobs:
+
+  webapp:
+
+    uses: ./.github/workflows/reusable-dotnet-ci.yml
+
+    with:
+
+      solution: BasicWebApp/BasicWebApp.sln
+
+      project: BasicWebApp/BasicWebApp/BasicWebApp.csproj
+
+    #  test_project: BasicWebApp/BasicWebApp.Tests/BasicWebApp.Tests.csproj
+
+      publish_folder: BasicWebApp/publish
+
+      artifact_name: webapp

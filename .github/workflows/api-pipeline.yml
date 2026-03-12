@@ -1,0 +1,67 @@
+#name: ASP.NET 8 CI/CD
+
+#on:
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
+
+#jobs:
+#  build:
+
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        working-directory: BasicWebApp/BasicWebApp   # folder with .sln
+
+#    steps:
+#    - name: Checkout code
+#      uses: actions/checkout@v5
+
+#    - name: Setup .NET 8
+#      uses: actions/setup-dotnet@v5
+#      with:
+#        dotnet-version: '8.0.x'
+
+    ##- name: Install SonarCloud Scanner
+    ##  uses: sonarsource/sonarcloud-github-action@v2
+    ##  with:
+    ##      organization: your-sonarcloud-org  # your org in SonarCloud
+    ##      token: ${{ secrets.SONAR_TOKEN }}
+
+#    - name: Restore dependencies
+#      run: dotnet restore BasicWebApp.sln
+
+#    - name: Build
+#      run: dotnet build BasicWebApp.sln --configuration Release --no-restore
+
+#    - name: Run tests
+#      run: dotnet test ../BasicWebApp.Test/BasicWebApp.Test.csproj --no-build
+
+
+      #######################################################
+name: API Pipeline
+
+on:
+  push:
+    branches: [dev, qa, main]
+    paths:
+      - 'BasicWebAPI/**'
+
+jobs:
+
+  api:
+
+    uses: ./.github/workflows/reusable-dotnet-ci.yml
+
+    with:
+
+      solution: BasicWebAPI/BasicWebAPI/BasicWebAPI.sln
+
+      project: BasicWebAPI/BasicWebAPI/BasicWebAPI.csproj
+
+      test_project: Api/Api.Tests/Api.Tests.csproj
+
+      publish_folder: BasicWebAPI/BasicWebAPI/publish
+
+      artifact_name: api

@@ -1,0 +1,25 @@
+name: Worker Service Pipeline
+
+on:
+  push:
+    branches: [dev, qa, main]
+    paths:
+      - 'BasicConsoleApp/**'
+
+jobs:
+
+  worker:
+
+    uses: ./.github/workflows/reusable-dotnet-ci.yml
+
+    with:
+
+      solution: BasicConsoleApp/BasicConsoleApp.sln
+
+      project: Services/WorkerService/WorkerService.csproj
+
+      test_project: Services/WorkerService.Tests/WorkerService.Tests.csproj
+
+      publish_folder: Services/publish
+
+      artifact_name: worker

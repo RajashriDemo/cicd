@@ -1,0 +1,67 @@
+name: Reusable .NET CI/CD
+
+on:
+  workflow_call:
+
+    inputs:
+
+      solution:
+        required: true
+        type: string
+
+      project:
+        required: true
+        type: string
+
+      test_project:
+        required: true
+        type: string
+
+      publish_folder:
+        required: true
+        type: string
+
+      artifact_name:
+        required: true
+        type: string
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+
+    steps:
+
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Generate Version
+        id: version
+        run: |
+          VERSION=1.0.${{ github.run_number }}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Restore
+        run: dotnet restore ${{ inputs.solution }}
+
+      - name: Build
+        run: dotnet build ${{ inputs.solution }} --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test ${{ inputs.test_project }} --no-build
+
+      - name: Publish
+        run: dotnet publish ${{ inputs.project }} -c Release -o publish
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact_name }}-${{ steps.version.outputs.version }}
+          path: publish

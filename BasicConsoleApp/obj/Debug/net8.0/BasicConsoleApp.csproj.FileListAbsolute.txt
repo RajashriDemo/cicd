@@ -1,0 +1,15 @@
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\bin\Debug\net8.0\BasicConsoleApp.exe
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\bin\Debug\net8.0\BasicConsoleApp.deps.json
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\bin\Debug\net8.0\BasicConsoleApp.runtimeconfig.json
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\bin\Debug\net8.0\BasicConsoleApp.dll
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\bin\Debug\net8.0\BasicConsoleApp.pdb
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.AssemblyInfoInputs.cache
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.AssemblyInfo.cs
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.csproj.CoreCompileInputs.cache
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.sourcelink.json
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.dll
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\refint\BasicConsoleApp.dll
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.pdb
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\BasicConsoleApp.genruntimeconfig.cache
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicConsoleApp\obj\Debug\net8.0\ref\BasicConsoleApp.dll
