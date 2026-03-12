@@ -60,7 +60,7 @@ jobs:
 
       project: BasicWebAPI/BasicWebAPI/BasicWebAPI.csproj
 
-      test_project: Api/Api.Tests/Api.Tests.csproj
+      test_project: BasicWebAPI/BasicWebAPI.Tests/BasicWebAPI.Tests.csproj
 
       publish_folder: BasicWebAPI/BasicWebAPI/publish
 
