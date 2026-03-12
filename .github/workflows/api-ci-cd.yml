@@ -49,8 +49,11 @@ jobs:
     - name: Test
       run: dotnet test ../BasicWebAPI.Test/BasicWebAPI.Test.csproj --no-build
 
-    - name: Publish
-      run: dotnet publish BasicWebAPI.csproj -c Release -o publish
+    - name: Publish API
+      run: dotnet publish BasicWebAPI/BasicWebAPI/BasicWebAPI.csproj -c Release -o ${{ github.workspace }}/publish
+
+    - name: Show Publish Folder
+      run: ls -R publish
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
