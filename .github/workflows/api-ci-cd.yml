@@ -59,13 +59,77 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: basicwebapi-${{ steps.version.outputs.version }}
+        path: ${{ github.workspace }}/publish
+
+  deploy-dev:
+
+    needs: build
+    if: github.ref == 'refs/heads/dev'
+
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: basicwebapi-${{ needs.build.outputs.version }}
         path: publish
 
+    - name: Deploy to Dev
+      run: |
+        echo "Deploying to DEV server"
+        ls -R publish
+
+
+  deploy-qa:
+
+    needs: build
+    if: github.ref == 'refs/heads/qa'
+
+    runs-on: ubuntu-latest
+    environment: qa
+
+    steps:
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: basicwebapi-${{ needs.build.outputs.version }}
+        path: publish
+
+    - name: Deploy to QA
+      run: |
+        echo "Deploying to QA server"
+        ls -R publish
+
+
+  deploy-production:
+
+    needs: build
+    if: github.ref == 'refs/heads/main'
+
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: basicwebapi-${{ needs.build.outputs.version }}
+        path: publish
+
+    - name: Deploy to Production
+      run: |
+        echo "Deploying to Production server"
+        ls -R publish
+
     - name: Create Git Tag
-      if: github.ref == 'refs/heads/main'
       run: |
         git config user.name "github-actions"
         git config user.email "actions@github.com"
-        TAG=v${{ steps.version.outputs.version }}
+        TAG=v${{ needs.build.outputs.version }}
         git tag $TAG
         git push origin $TAG
