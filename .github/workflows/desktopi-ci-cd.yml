@@ -37,8 +37,8 @@ jobs:
       - name: Publish output
         run: |
          mkdir publish
-         robocopy BasicWindowsFormsApp\bin\Release publish /E || exit 0
-
+         robocopy BasicWindowsFormsApp\bin\Release publish /E
+         if ($LASTEXITCODE -le 1) { exit 0 }
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
