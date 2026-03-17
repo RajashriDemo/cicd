@@ -36,7 +36,8 @@ jobs:
 
       - name: Publish output
         run: |
-           robocopy BasicWindowsFormsApp\bin\Release publish /E
+         mkdir publish
+         robocopy BasicWindowsFormsApp\bin\Release publish /E || exit 0
 
 
       - name: Upload artifact
