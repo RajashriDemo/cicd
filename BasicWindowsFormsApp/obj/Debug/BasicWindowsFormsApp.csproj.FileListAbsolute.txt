@@ -1,0 +1,9 @@
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\bin\Debug\BasicWindowsFormsApp.exe.config
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\bin\Debug\BasicWindowsFormsApp.exe
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\bin\Debug\BasicWindowsFormsApp.pdb
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\obj\Debug\BasicWindowsFormsApp.csproj.AssemblyReference.cache
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\obj\Debug\BasicWindowsFormsApp.Properties.Resources.resources
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\obj\Debug\BasicWindowsFormsApp.csproj.GenerateResource.cache
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\obj\Debug\BasicWindowsFormsApp.csproj.CoreCompileInputs.cache
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\obj\Debug\BasicWindowsFormsApp.exe
+D:\Projects\Test\CICD\BasicWebAppCICD\cicd\BasicWindowsFormsApp\obj\Debug\BasicWindowsFormsApp.pdb

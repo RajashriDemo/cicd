@@ -1,0 +1,40 @@
+name: Build VB .NET Desktop App
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'BasicWindowsFormsApp/**'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore YourSolution.sln
+
+      - name: Build solution
+        run: msbuild YourSolution.sln /p:Configuration=Release
+
+      - name: Publish output
+        run: |
+          mkdir publish
+          xcopy /E /I bin\Release publish
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-app
+          path: publish
