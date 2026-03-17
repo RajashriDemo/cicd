@@ -27,15 +27,18 @@ jobs:
         uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages
+        working-directory: BasicWindowsFormsApp
         run: nuget restore BasicWindowsFormsApp.sln
 
       - name: Build solution
+        working-directory: BasicWindowsFormsApp
         run: msbuild BasicWindowsFormsApp.sln /p:Configuration=Release
 
       - name: Publish output
         run: |
           mkdir publish
-          xcopy /E /I bin\Release publish
+          xcopy /E /I BasicWindowsFormsApp/bin\Release publish
+
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
